@@ -1,0 +1,28 @@
+# Model settings
+model_name: facebook/nllb-200-distilled-600M
+dtype: float16    # float16 for GPU, can switch to float32 for CPU
+device_map: auto    # "auto" = use GPU if available, else CPU
+
+# Token & batching
+max_input_tokens: 3500     # max tokens per batch (input side)
+max_output_tokens: 128     # max tokens per subtitle block output
+batch_padding: false    # if true, pad batches to equal length
+
+# Subtitle processing
+block_format: "[BLOCK{num:04d}]"    # zero-padded numbering
+preserve_tags: true
+preserve_sounds: true
+preserve_speaker_labels: true
+normalize_slang: false          # if true, slang gets normalized
+slang_dict_path: "slang.json"  # path to slang dictionary
+
+# File paths
+input: ./subs        # can be a folder or a single file
+output: ./output         # folder or file path
+
+# Default languages (overridden by CLI args)
+tgt_lang: spa_Latn       # targetted language
+
+# Logging
+show_progress: true
+log_level: INFO   # DEBUG, INFO, WARNING, ERROR
